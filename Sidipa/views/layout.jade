@@ -1,7 +1,36 @@
-﻿doctype html
 html
   head
     title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+
+    link(rel='stylesheet', href='/css/lib/bootstrap.min.css')
+    link(rel='stylesheet', href='/css/style.css')
+    link(rel='stylesheet', href='/css/lib/animate.min.css')
+    link(rel='stylesheet', href='/css/range.css')
+
+    script(src='/js/lib/jquery-2.2.2.min.js')
+    script(src='/js/lib/bootstrap.min.js')
+    script(src="/js/lib/bootbox.min.js")
+    script(src='/js/layout.js')
+
+    block style
   body
+    //menu Principal
+    nav.navbar.navbar-default
+      .container-fluid
+        center
+          img#logo(alt='Brand', src='/img/template/logo.png')
+        block menu
+
+    // Barra De Progreso
+    .progress(style="background: #31708f;height: 5px;margin-bottom: -1px;")
+      .progress-bar.progress-bar-striped.active(role='progressbar', aria-valuenow='0', aria-valuemin='0', aria-valuemax='100', style='width: 0%')
+
     block content
+      include ./includes/alertas
+
+
+    block script
+

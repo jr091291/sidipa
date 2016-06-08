@@ -1,0 +1,66 @@
+.navbar-header
+    button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#menu', aria-expanded='false')
+        span.sr-only Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+// Collect the nav links, forms, and other content for toggling
+#menu.collapse.navbar-collapse
+    ul.nav.navbar-nav.navbar-right
+        li
+            a.dropdown-toggle(data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
+                | Datos Simulacion
+            .dropdown-menu
+                include info
+        li.dropdown
+            a.dropdown-toggle(data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
+                | Mi Perfil
+                span.caret
+            ul.dropdown-menu
+                li
+                    a(href='/usuarios/editar') Actualizar Datos
+                li
+                    a(onclick="modalCancelarCuenta()") Cancelar Cuenta
+                li.divider(role='separator')
+                li
+                    a(href='/logout') Cerrar Session
+    script.
+        function modalCancelarCuenta(){
+            bootbox.dialog({
+                title: "Cancelar Mi Cuenta SIDIPA.",
+                message: '<div class="row">  ' +
+                        '<div class="col-md-12"> ' +
+                        '<form id="deleteUser" method="post" action="/usuarios/eliminar"> ' +
+                        '<div class="form-group"> ' +
+                        '<div style="width: 90%; margin-left: 5%" class="alert alert-danger" role="alert">En Realidad Desea Darse De Baja, Una Vez Realizada La Operacion, Se Perdera Toda Su Informacion Y No Habra Manera De Recuperarla</p></div>'+
+                        '<center class="form-group"> ' +
+                        '<label class="control-label" for="pass">Por Favor Ingrese Su Passwore</label> <br>' +
+                        '<div class="col-md-6 col-md-offset-3"> ' +
+                        '<input id="pass" name="pass" type="password" placeholder="Escribe Tu Contraseña" class="form-control input-md"> ' +
+                        '</div> ' +
+                        '</center>' +
+                        '</form> ' +
+                        '</div>',
+                buttons: {
+                    success: {
+                        label: "Permanecer Activo",
+                        className: "btn-success",
+                        callback: function () {
+                            generateAlert('info', 'SIDIPA:', 'Tu Intencion Sera Tomada En Cuenta Para Seguir Mejorando, ¡Gracias! ', true);
+                        }
+                    },
+                    danger: {
+                        label: "Cancelar Suscripción",
+                            className: "btn-danger",
+                            callback: function(){
+                                if(!$('#pass').val()){
+                                    generateAlert('warning','Informacion Invalida:','Ingrese Un Passwore Correcto',true);
+                                }
+                                else {
+                                   var e = $('#deleteUser').submit();
+                                }
+                            }
+                    }
+                }
+            });
+        }

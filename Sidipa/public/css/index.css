@@ -1,0 +1,47 @@
+#simulacionControl {
+    color: #217A77;
+    width: 300px;
+    position: absolute;
+    max-height: 300px;
+    margin-top: -334px;
+}
+
+/*
+* Estilos Chat
+*/
+#chat {
+    overflow-wrap: break-word;
+    width: 300px;
+    position: absolute;
+    height: 400px;
+    margin-top: -400px;
+}
+
+#chat #mensajes {
+    height: 275px;
+    overflow-y: auto;
+}
+
+/*
+* Estilos canvas
+*/
+#myCanvas {
+    background: #DAD7D7;
+}
+
+/*
+* estilos Menu Pie De Pagina
+*/
+#footer{
+    background-color: #31708f;
+}
+#footer .container-fluid #controlPanel {
+    width: 300px;
+    background-color: #337AB7 !important;
+    color: whitesmoke;
+}
+#footer .container-fluid #controlPanel:hover{
+    color: #FFFFFF;
+    background-color: #1C526D;
+    color: white;
+}

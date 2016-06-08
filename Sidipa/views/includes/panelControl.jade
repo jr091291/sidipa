@@ -1,0 +1,53 @@
+#simulacionControl.hide.panel.panel-primary
+    .panel-heading
+        h3.panel-title SIDIPA Control System
+            button#btnCloseControl.close(type='button', data-dismiss='alert', aria-label='Close')
+                span(aria-hidden='true', style='padding-right: 10px;') ×
+    .panel-body
+        strong#ctr_amplitud_label.info-range
+        input#ctr_amplitud(type='range', value='100',min='0',max='200',step='1')
+
+        strong#ctr_frecuencia_label.info-range
+        input#ctr_frecuencia(type='range', value='1',min='0',max='200',step='1')
+
+        strong#ctr_velocidad_label.info-range
+        input#ctr_velocidad(type='range', value='1',min='1',max='2000',step='1')
+
+        strong#ctr_periodos_label.info-range
+        input#ctr_periodos(type='range', value='1',min='1',max='4',step='1')
+
+        div Fase De Onda
+            br
+            label.radio-inline
+                input(type='radio', name='fase', value='0',checked=true)
+                |  0
+            label.radio-inline
+                input(type='radio', name='fase', value='90')
+                |  π/2
+            label.radio-inline
+                input(type='radio', name='fase', value='180')
+                |  π
+            label.radio-inline
+                input(type='radio', name='fase', value='270')
+                |  3π/2
+            label.radio-inline
+                input(type='radio', name='fase', value='360')
+                |  2π
+
+
+    script.
+        function setTooltip(id_range, tooltip, msg) {
+            (msg) ? msg : '';
+            $('#'+ tooltip).html(msg +': '+ $("#"+id_range)[0].value);
+            $("#"+id_range).on("input", function(){
+                $('#'+ tooltip).html(msg +': '+this.value);
+            });
+        }
+
+        $(document).ready(function(){
+            setTooltip('ctr_amplitud','ctr_amplitud_label', 'Amplitud Maxima');
+            setTooltip('ctr_frecuencia','ctr_frecuencia_label', 'Frecuencia de Onda');
+            setTooltip('ctr_velocidad', 'ctr_velocidad_label', 'Velocidad Renderizado');
+            setTooltip('ctr_periodos', 'ctr_periodos_label', 'Periodos Por Pantalla');
+
+        });

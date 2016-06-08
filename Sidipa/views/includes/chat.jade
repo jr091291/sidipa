@@ -1,0 +1,12 @@
+#chat.hide.panel.panel-primary
+    .panel-heading
+        h3.panel-title SIDIPA Chat Room
+            button#btnCloseChat.close(type='button', data-dismiss='alert', aria-label='Close')
+                span(aria-hidden='true', style='padding-right: 10px;') ×
+    .panel-body
+        #mensajes
+
+    .panel-footer
+        input#mensaje(type='text', style="margin-right: 18px;", placeholder='Enviar Un Mensaje')
+        button#sendMensagge.btn.btn-success(type='button') Enviar
+

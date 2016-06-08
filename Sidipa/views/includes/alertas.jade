@@ -1,0 +1,42 @@
+// Estilos
+style.
+    #alerts{
+        max-height: 60px;
+        overflow-y: hidden;
+    }
+    span[aria-hidden='true']{
+        width: 10px;
+    }
+script.
+    function generateAlert(type, title, mensaje, clear) {
+        var html = '<div role="alert" class="alert alert-' + type + ' alert-dismissible">\<' +
+                'button type="button" data-dismiss="alert" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>\<' +
+                'strong>' + title + ' </strong> ' + mensaje + '</div>';
+        (clear) ? $("#alerts")[0].innerHTML = html : $("#alerts")[0].innerHTML += html;
+    }
+#alerts
+    if success
+        .alert.alert-success.alert-dismissible(role='alert')
+            button.close(type='button', data-dismiss='alert', aria-label='Close')
+                span(aria-hidden='true') ×
+            strong #{(success.title) ? success.title : 'Succeso:: '}
+            |  #{(success.msg) ? success.msg : 'Opéracion Realizada Con Exito'}
+    if info
+        .alert.alert-info.alert-dismissible(role='alert')
+            button.close(type='button', data-dismiss='alert', aria-label='Close')
+                span(aria-hidden='true') ×
+            strong #{(info.title) ? info.title : 'Información: '}
+            |  #{(info.msg) ? info.msg : ''}
+    if alert
+        .alert.alert-warning.alert-dismissible(role='alert')
+            button.close(type='button', data-dismiss='alert', aria-label='Close')
+                span(aria-hidden='true') ×
+            strong #{(alert.title) ? alert.title : 'Alerta: '}
+            |  #{(alert.msg) ? alert.msg : ''}
+    if error
+        .alert.alert-danger.alert-dismissible(role='alert')
+            button.close(type='button', data-dismiss='alert', aria-label='Close')
+                span(aria-hidden='true') ×
+            strong #{(error.title) ? error.title : 'Peligro: '}
+            |  #{(error.msg) ? error.msg : 'Se Ha Producido Un Error'}
+

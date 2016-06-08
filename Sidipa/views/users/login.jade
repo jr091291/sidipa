@@ -1,0 +1,41 @@
+extend ../layout
+block content
+    #back.back-fixed
+        #form.panelbox.panel.panel-primary.hide(style="margin-top:5%")
+            center.panel-heading
+                h1 Bienvenido a SIDIPA
+                p El Simulador Distribuido De Ondas Senoidales
+            .panel-body
+                form(method='post', action='/login')
+                    include ../includes/alertas.jade
+                    input#role(type='hidden', name='role', value="estudiante")
+                    input#index(type='hidden', name='index', value= (data) ? data.index : 0)
+                    input#simulacion(type='hidden', name='simulacion', value= (data) ? data.simulacion : "")
+
+                    .form-group
+                        label(for='select') Deseo Ingresar Como:
+                        select#select.form-control(autofocus)
+                            option(value='estudiante') Estudiante
+                            option(value='docente') Docente
+                    .form-group
+                        label(for='cod_simulacion_est') Codigo Simulacion:
+                        input#cod_simulacion_est.form-control(value=(data) ? data.simulacion : "", type='text', placeholder='Codigo Simulación', pattern='[0-9]')
+                    .form-group
+                        label(for='identificacion') Identificacion:
+                        input#identificacion.form-control(name='id', value= (data) ? data.id : "" ,type='text', placeholder='Identificacion', required, pattern='[0-9]{10}')
+                    .form-group
+                        label(for='pass') Contraseña:
+                        input#pass.form-control(name='pass', type='password', placeholder='Contraseña', pattern='[a-zA-Z0-9]{6,20}')
+                    .form-group.hide
+                        label(for='cod_simulacion_doc') Seleccione Una Seccion:
+                        select#cod_simulacion_doc.form-control()
+                            option(value="null") Sin Opciones Disponibles
+
+                    br
+                    .form-group
+                        button.btn.btn.btn-success.pull-right.disabled(type='submit') Conectarme
+                    .form-group.clear
+                    center
+                        a(href="/usuarios/registro") ¿Aun No Tienes Una Cuenta SIDIPA?
+    script(src='/js/login/login.js',type='text/javascript')
+

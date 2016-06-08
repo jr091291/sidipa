@@ -1,0 +1,7 @@
+/bin/Microsoft.NodejsTools.WebRole.dll
+/.ntvs_analysis.dat
+.idea/
+node_modules 
+/obj/
+/sidipa.sqlite
+/Sidipa.njsproj

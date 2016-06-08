@@ -1,0 +1,26 @@
+#param {
+    background-color: ghostwhite;
+    padding: 10px 15px;
+    width: 240px;
+    border-radius: 10px;
+    color: #2470B1;
+}
+
+#param p span {
+    background-color: #4484BB;
+}
+
+.info_text {
+    width: 88%;
+    position: absolute;
+    color: #FFFFFF;
+    text-align: center;
+}
+.progress{
+    background-color: #98B2B9;
+}
+
+.progress-bar {
+    background-color: #27679E !important;
+}
+

@@ -1,5 +1,28 @@
-﻿extends layout
-
+extends layout
+block style
+    link(rel='stylesheet', href='/css/index.css')
+block menu
+    include ./includes/menu
 block content
-  h1= title
-  p Welcome to #{title}
+    include includes/alertas
+    canvas#myCanvas(style="margin-top:-20px;") Su navegador no soporta Canvas.
+
+    //Menu de Pie De Pagina
+    nav#footer.navbar-fixed-bottom
+        .container-fluid
+            //Control Simuklacion
+            button#controlPanel.btn(href='#') Panel De Control SIDIPA
+            include includes/panelControl
+                //Chat Simulacion
+            .navbar-right
+                button#btnChat.btn.btn-primary.navbar-right(type='button', style='width: 300px')
+                    | Chat Room SIDIPA
+                include includes/chat
+block script
+    script.
+        var _dataSimulacion = JSON.parse(htmldecode("#{simulacion}"));
+    script(src = "https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.6/socket.io.js")
+    script(src = '/js/lib/sidipa.min.js')
+    script(src = '/js/index/index.js')
+
+

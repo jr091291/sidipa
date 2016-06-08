@@ -1,0 +1,100 @@
+extends ../layout
+block content
+    #back.back-fixed
+        #form.panelbox.panel.panel-primary.hide
+            center.panel-heading
+                h1 Bienvenido a SIDIPA
+                p El Simulador Distribuido De Ondas Senoidales
+            .panel-body
+                form(method='post', action=action)
+                    include ../includes/alertas.jade
+                    input#role(type='hidden', name='role', value= (role) ? role : 'docente')
+                    input#operacion(type='hidden',name='operacion', value= (operacion) ? operacion : '' )
+
+                    if(operacion === 'registrar')
+                        center
+                            .radio-inline
+                                input#docente(type='radio', checked='checked', name='rolebutton', value='docente')
+                                | Soy Un Docente
+                            .radio-inline
+                                input(type='radio', name='rolebutton', value='estudiante')
+                                | Soy Un Estudiante
+                    br
+                    if(operacion ==='registrar')
+                        .form-group
+                            input#identificacion.form-control(name='id',value=(data) ? data.id : '', type='text', placeholder='Identificacion', required, autofocus, pattern='[0-9]{10}')
+                    .form-group
+                        input#nombre.form-control(name='nombre', value=(data) ? data.nombre : '' type='text', placeholder='Nombres y apellidos', required, pattern='*[a-zA-z]|\s')
+                    .form-group
+                        input#programa.form-control(name='programa',value=(data) ? data.programa : '', type='text', placeholder='Programa Academico', required, pattern='*[a-zA-z]|\s')
+                    .form-group
+                        input#institucion.form-control(name='institucion',value=(data) ? data.institucion : '', type='text', placeholder='Institucion Educativa', required, pattern='*[a-zA-z]|\s')
+                    select.form-control(name='profesion')
+                        if(data)
+                            option #{data.profesion}
+                        option Estudiante Bachiller
+                        option Estudiante Pregrado
+                        option Estudiante Universitario
+                        option Egresado
+                        option Profesional
+                        option Especialista
+                        option Master
+                        option Magister
+                    br
+                    if(operacion === 'registrar')
+                        .form-group
+                            input#pass.form-control(name='pass', type='password', placeholder='Contraseña', pattern='[a-zA-Z0-9]{6,20}')
+                        .form-group
+                            input#passconfirm.form-control(name='confirm_pass', type='password', placeholder='Confirmar Contraseña', required,pattern='[a-zA-Z0-9]{6,20}')
+                    .form-group
+                        button.btn.btn.btn-success.pull-right(type='submit') Confirmar
+                    .form-group.clear
+                    if (operacion === 'registrar')
+                        center
+                            a(href="/login") ¡Ya He Creado Una Cuenta SIDIPA!
+                    if (operacion === 'editar')
+                        center
+                            a(href="/usuarios/eliminar") Deseo Cancelar Mi Cuenta
+
+        script(type='text/javascript').
+            $(document).ready(function () {
+                if($('#operacion').val() ==='registrar'){
+                    var docentebtn = document.getElementsByName('rolebutton')[0];
+                    var estudiantebtn = document.getElementsByName('rolebutton')[1];
+                    var role = document.getElementById('role');
+                    switch (role.value) {
+                        case 'docente':
+                            docentebtn.checked = true;
+                            role.value = 'docente';
+                            break;
+                        case 'estudiante':
+                            estudiantebtn.cheked = true;
+                            role.value = 'estudiante';
+                            break;
+                    }
+
+                    docentebtn.onchange = function () {
+                        role.value = 'docente';
+                    }
+                    estudiantebtn.onchange = function () {
+                        role.value = 'estudiante';
+                    }
+                }
+
+                if (!$('#alerts').html()) {
+                    $('#back').animateCss('fadeIn');
+                    setTimeout(function () {
+                        $('#form').removeClass('hide');
+                        $('#form').animateCss('zoomIn');
+                        setTimeout(function () {
+                            $('#form').animateCss('pulse')
+                        }, 1050);
+                    }, 700);
+                }
+                else {
+                    $('#form').removeClass('hide');
+                }
+
+            });
+
+
